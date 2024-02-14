@@ -1,0 +1,81 @@
+/* 使用通配符 * 将所有元素的 box-sizing 设置为 border-box 。
+box-sizing：
+content-box：默认值，指定元素的宽度和高度仅包括内容区域，不包括内边距（padding）和边框（border）。
+border-box：指定元素的宽度和高度包括内容区域、内边距和边框。 */
+* {
+    box-sizing: border-box;
+}
+
+/* 将页面内容居中显示，并且占据整个视口的高度，并隐藏溢出内容，并消除默认的页面边距。 */
+body {
+    /* 设置元素为Flex容器 */
+    display: flex;
+    /* 水平方向和垂直方向上居中显示 */
+    align-items: center;
+    justify-content: center;
+    /* 高度设置为视口的100%，确保页面占据整个屏幕的高度 */
+    height: 100vh;
+    /* 隐藏溢出内容，防止屏幕尺寸变小时出现滚动条 */
+    overflow: hidden;
+    /* 外边距置为0 */
+    margin: 0;
+}
+
+/* 宽度设置为视口宽度的 90%。 */
+.container {
+    display: flex;
+    width: 90vw;
+}
+
+.panel {
+
+    /* 设置背景图片的尺寸，使其覆盖整个 .panel 元素，且保持比例不变。 */
+    background-size: cover;
+    /* 设置背景图片在 .panel 元素中的位置为居中。 */
+    background-position: center;
+    /*  设置边框为1像素的实线 */
+    border: 1px solid;
+    /* 设置 .panel 元素的高度为视口高度的 80% */
+    height: 80vh;
+    /* 设置 .panel 元素的圆角为 50px，使其呈现圆角矩形的外观。 */
+    border-radius: 50px;
+    /* 设置 .panel 元素内文本的颜色为 aliceblue（一种浅蓝色）。 */
+    color: white;
+    /* 当鼠标悬停在 .panel 元素上时，鼠标指针将显示为手型，表示该元素可点击。 */
+    cursor: pointer;
+    /* 设置 .panel 元素的伸缩比例为 0.5。这意味着在 Flex 容器中，.panel 元素将占据可用空间的一半。这个属性是 Flexbox 布局中用来控制 Flex 项目相对于其他 Flex 项目的大小比例的。 */
+    flex: 0.5;
+    /* 设置 .panel 元素的外边距为 10px，增加了元素之间的间距。 */
+    margin: 10px;
+    /* 设置 .panel 元素的定位方式为相对定位，这意味着它的位置相对于其原本在文档流中的位置进行偏移。 */
+    position: relative;
+    /* 添加过渡效果，当 .panel 元素的样式发生变化时，将在 700 毫秒内以 ease-in 的速度进行平滑过渡。这个过渡效果应用于所有属性的变化，包括背景、尺寸等，以提供流畅的视觉效果。 */
+    transition: all 700ms ease-in;
+}
+
+.panel h3 {
+    /* 设置 h3 标题的字体大小为 24 像素。 */
+    font-size: 32px;
+    -webkit-text-stroke: 1px black;
+    /* 将 h3 标题的定位方式设置为绝对定位，这意味着它的位置将相对于其最近的已定位祖先元素进行定位。 */
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    margin: 0;
+    /* 设置 h3 标题的透明度为 0，使其在默认状态下不可见。 */
+    opacity: 0;
+}
+
+/* .panel.active: 这是一个组合选择器，表示当 .panel 元素同时具有 active 类时，应用这段样式。
+flex: 5;: 设置 .panel 元素的伸缩比例为 5。这意味着在 Flex 容器中，.panel 元素将会占据可用空间的五分之一。通过将 flex 属性设为不同的值，可以调整 Flex 项目在 Flex 容器中的尺寸比例。
+因此，当 .panel 元素同时具有 active 类时，它的尺寸比例将会变为 5，这可能会导致它在 Flex 容器中占据更多的空间。
+ */
+.panel.active {
+    flex: 5;
+}
+
+.panel.active h3 {
+    opacity: 1;
+    /* 当 h3 标题的透明度发生变化时，将在 300 毫秒内以 ease-in 的速度进行平滑过渡，且延迟 0.4 秒开始过渡。这样的效果会使标题在变得可见时以渐变的方式呈现出来，提供更加平滑的视觉效果。 */
+    transition: opacity 300ms ease-in 400ms;
+}
