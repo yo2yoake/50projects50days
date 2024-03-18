@@ -1,43 +1,84 @@
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html lang="zh-CN">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expanding Cards</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expanding Cards</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url('./color-morph.svg') center/100%;
+    }
+
+    .container {
+      width: 80vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .panel {
+      margin: 0 4px;
+      height: 70vh;
+      border-radius: 25px;
+      background-size: cover;
+      background-position: center;
+      flex: 0.5;
+      cursor: pointer;
+      transition: all 700ms ease;
+      position: relative;
+    }
+
+    .panel span{
+      font-size: 20px;
+      color: transparent;
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      transition: all 700ms ease;
+    }
+
+    .panel.active {
+      flex: 5;
+      height: 80vh;
+      border: 1px solid black;
+    }
+
+    .panel.active span{
+      -webkit-text-stroke: 0.5px black;
+      color: white;
+    }
+  </style>
+
 </head>
 
 <body>
+  <div class="container">
+    <div class="panel active" style="background-image: url('./images/01.jpg');"><span>胡桃</span></div>
+    <div class="panel" style="background-image: url('./images/02.jpg');"><span>甘雨</span></div>
+    <div class="panel" style="background-image: url('./images/03.jpg');"><span>钟离</span></div>
+    <div class="panel" style="background-image: url('./images/04.jpg');"><span>魈</span></div>
+    <div class="panel" style="background-image: url('./images/05.jpg');"><span>凝光</span></div>
+  </div>
 
-    <div class="container">
-        <div class="panel active"
-            style="background-image: url('./images/01.jpg')">
-            <h3>Hu Tao</h3>
-        </div>
-        <div class="panel"
-            style="background-image: url('./images/02.jpg')">
-            <h3>Ganyu</h3>
-        </div>
+  <script>
+    // 事件委托
+    const panelContainer = document.querySelector('.container')
+    panelContainer.addEventListener('click', function (e) {
+      if (e.target.classList.contains('panel')) {
+        document.querySelector('.panel.active').classList.remove('active')
+        e.target.classList.add('active')
+      }
+    })
 
-        <div class="panel"
-            style="background-image: url('./images/03.jpg')">
-            <h3>Zhongli</h3>
-        </div>
-
-        <div class="panel"
-            style="background-image: url('./images/04.jpg')">
-            <h3>Xiao</h3>
-        </div>
-
-        <div class="panel"
-            style="background-image: url('./images/05.jpg')">
-            <h3>Ningguang</h3>
-        </div>
-
-        <script src="script.js"></script>
-    </div>
-
+  </script>
 </body>
 
 </html>
